@@ -3,7 +3,6 @@ use lazy_static::lazy_static;
 use spin::Mutex;
 use volatile::Volatile;
 
-
 lazy_static! {
     pub static ref WRITER: Mutex<Writer> = Mutex::new(Writer {
         column_position: 0,
@@ -11,8 +10,6 @@ lazy_static! {
         buffer: unsafe { &mut *(0xb8000 as *mut Buffer) },
     });
 }
-
-
 
 #[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -112,10 +109,9 @@ impl Writer {
         }
         self.clear_row(BUFFER_HEIGHT - 1);
         self.column_position = 0;
-        
-        }
+    }
 
-    fn clear_row(&mut self, row: usize) { 
+    fn clear_row(&mut self, row: usize) {
         let blank = ScreenChar {
             ascii_character: b' ',
             color_code: self.color_code,
@@ -125,11 +121,7 @@ impl Writer {
             self.buffer.chars[row][col].write(blank);
         }
     }
-
-    
 }
-
-
 
 // Allows for using write! and writeln!
 impl fmt::Write for Writer {
@@ -138,7 +130,6 @@ impl fmt::Write for Writer {
         Ok(())
     }
 }
-
 
 #[macro_export]
 macro_rules! print {
