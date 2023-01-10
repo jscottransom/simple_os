@@ -4,20 +4,21 @@
 mod vga_buffer;
 use core::panic::PanicInfo;
 
-
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    println!("{}", info);
+    loop {}
+}
 
 
 // System entry point.
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
     println!("Hello World{}", "!");
-
+    
+    panic!("This is a panic message");
     loop {}
 }
 
-#[panic_handler]
-fn panic(info: &PanicInfo) -> ! {
-    println!("{}", info);
-    loop {}
-}
+
 

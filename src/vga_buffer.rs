@@ -17,7 +17,6 @@ lazy_static! {
 #[allow(dead_code)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u8)]
-
 pub enum Color {
     Black = 0,
     Blue = 1,
