@@ -7,7 +7,6 @@
 use core::panic::PanicInfo;
 use simple_os::println;
 
-
 // System entry point.
 #[no_mangle]
 pub extern "C" fn _start() -> ! {
@@ -20,7 +19,6 @@ pub extern "C" fn _start() -> ! {
     loop {}
 }
 
-
 #[cfg(not(test))]
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
@@ -31,9 +29,5 @@ fn panic(info: &PanicInfo) -> ! {
 #[cfg(test)]
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
-   
-   simple_os::test_panic_handler(info)
+    simple_os::test_panic_handler(info)
 }
-
-
-
