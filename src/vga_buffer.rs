@@ -60,7 +60,7 @@ struct Buffer {
     chars: [[Volatile<ScreenChar>; BUFFER_WIDTH]; BUFFER_HEIGHT],
 }
 
-// We need the buffer to exist for the entir life of the program.
+// We need the buffer to exist for the entire life of the program.
 pub struct Writer {
     column_position: usize,
     color_code: ColorCode,
